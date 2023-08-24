@@ -19,7 +19,15 @@ const casa = {
         }
     },
     ubicacion: {
-        
+        calle: 'Insurgentes',
+        numero: {
+            exterior: 100,
+            interior: 2
+        },
+        colonia: 'Del Valle',
+        municipio: 'Benito Juarez',
+        entidad: 'Ciudad de México',
+        cp: '14210'
     }
 }
 
@@ -85,17 +93,17 @@ const computadora = {
 }
 
 const edificio = {
-    marca: '',
+    numero_pisos: 8
     
 }
 
 const telefono_movil = {
-    marca: '',
+    marca: 'Samsung',
     
 }
 
 const menu = {
-    marca: '',
+    entradas: '',
     
 }
 
