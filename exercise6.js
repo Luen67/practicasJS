@@ -46,8 +46,9 @@ const existAllVocal = (string) =>  {
 console.log(existAllVocal('murcielago'));
 
 
+
 /*crea una funcion llamada sayHi que recibe como parametro un nombre y te salude*/
-const hourGreeting = (hour) => {
+const sayHi = (name, hour) => {
     let greeting='';
     if(hour <= 12){
         greeting = 'Buenos dias';
@@ -56,19 +57,19 @@ const hourGreeting = (hour) => {
     }else{
         greeting = 'Buenas noches';
     }
-    return greeting;
+    return greeting+' '+name;
 }
 
 
 /*Crea una funcion llamada executor que reciba como primer parametro una funcion y como segundo 
 parametro un string y que en su cuerpo ejecute la funcion recibida y pase como parametro el segundo parametro recibido en esta funcion*/
 
-const sayHi = (hourGreeting,name,hour) => {
-    const greeting = hourGreeting(hour)+' '+name;
+const executor = (hourGreeting,name,hour) => {
+    const greeting = sayHi(name, hour);
     return greeting;
 };
 
 
 
 /*Ejecuta la funcion executor anterior pasando como primer parametro la funcion sayHi y como segundo parametro un string con tu nombre*/
-console.log(sayHi(hourGreeting,'Luis',8));
+console.log(executor(sayHi,'Luis',8));
