@@ -64,8 +64,8 @@ const sayHi = (name, hour) => {
 /*Crea una funcion llamada executor que reciba como primer parametro una funcion y como segundo 
 parametro un string y que en su cuerpo ejecute la funcion recibida y pase como parametro el segundo parametro recibido en esta funcion*/
 
-const executor = (hourGreeting,name,hour) => {
-    const greeting = sayHi(name, hour);
+const executor = (sayHiCB,name,hour) => {
+    const greeting = sayHiCB(name, hour);
     return greeting;
 };
 
