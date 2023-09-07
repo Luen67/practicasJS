@@ -124,13 +124,12 @@ const insertModalSong = (songInfo) =>{
     divModalBody.className = "modal-body";
     spanBand.className = "fw-bold";
     spanBand.textContent = "Banda: ";
-    spanBandText.textContent = songInfo.name;
+    spanBandText.textContent = songInfo.band;
     spanYear.className = "fw-bold";
     spanYear.textContent = "Año Lanzamiento: ";
     spanYearText.textContent = songInfo.releaseYear;
     spanStatistics.className = "fw-bold";
     spanStatistics.textContent = "Estadisticas: ";
-    spanStatisticsText.textContent = "Estadisticas: ";
     liLikes.textContent = "Likes: "+songInfo.statistics.likes;
     liReproductions.textContent = "Reproducciones: "+songInfo.statistics.reproductions;
 
