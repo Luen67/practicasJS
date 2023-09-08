@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'lcd'; /* Un nombre para tu fuente */
+    src: url('assets/LcdPhone-wgZ2.ttf') format('truetype'); /* Ruta a tu archivo de fuente */
+    /* Puedes agregar otros formatos de fuente aquí si lo deseas */
+}
+
+body {
+    font-family: 'lcd', sans-serif; /* Usa el nombre que especificaste en @font-face */
+}
+
+.row__container {
+    height: 900px;
+}
+
+.counter__container {
+    height: 120px;
+}
+
+.counter__left {
+    border-left-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.counter__center {
+    border-left-style: dashed;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: dashed;
+}
+
+.counter__right {
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.counter {
+    font-size: 70px;
+}
+
+.btn-success {
+    width: 78px;
+}
+
+
+.btn-warning {
+    width: 78px;
+    height: 78px;
+}
