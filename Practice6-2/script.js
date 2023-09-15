@@ -12,6 +12,7 @@ const labelValidation = document.querySelector('#validation');
 let personas = [];
 let edit = false;
 let index_;
+let idTemp = 0;
 
 btnEnviar.addEventListener('click', () => {
 
@@ -21,6 +22,7 @@ btnEnviar.addEventListener('click', () => {
     }
 
     const persona = {
+        'id': idTemp,
         'avatar': avatar.value,
         'nombre': nombre.value,
         'apellido': apellido.value,
@@ -30,16 +32,65 @@ btnEnviar.addEventListener('click', () => {
         'descripcion': descripcion.value
     };
 
+
     if(!edit){
         personas.push(persona);
+        postPersona(persona);
     }else{        
         personas.splice(index_, 1, persona);
+        updatePersona(persona);
     }
     
     renderCards(personas);
     labelValidation.textContent = '';
     form.reset();
 });
+
+
+
+const URL_FIREBASE = 'https://js-7f027-default-rtdb.firebaseio.com/.json'
+
+const getPersonas = async() => {
+    try{
+        const response = await fetch(URL_FIREBASE, {method:'GET'});
+        const parsed = await response.json();
+        for(const key in parsed){
+            personas.push({
+                'id': key,
+                'avatar': parsed[key].avatar,
+                'nombre': parsed[key].nombre,
+                'apellido': parsed[key].apellido,
+                'fechaNacimiento': parsed[key].fechaNacimiento,
+                'genero': parsed[key].genero,
+                'pais': parsed[key].pais,
+                'descripcion': parsed[key].descripcion
+            });
+        }
+        renderCards(personas);
+    } catch(error){
+        console.log(error);
+    }
+}
+
+getPersonas();
+
+const postPersona = async(persona) => {
+    const response = await fetch(URL_FIREBASE, {
+        method: 'POST',
+        headers: {'Content-type': 'application/json;charset=UTF-8'},
+        body: JSON.stringify(persona)
+        
+    });
+}
+
+const updatePersona = async(persona) => {
+    const response = await fetch('https://js-7f027-default-rtdb.firebaseio.com/'+persona.id+'.json', {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json;charset=UTF-8'},
+        body: JSON.stringify(persona)
+        
+    });
+}
 
 const renderCards = (list) => {
     while (cardContainer.firstChild) {
@@ -122,6 +173,7 @@ const editCard = (button) => {
     index_ = index;
     button.textContent = 'Cancelar';
     persona = personas[index];
+    idTemp = persona.id;
     avatar.value = persona.avatar;
     nombre.value = persona.nombre;
     apellido.value = persona.apellido;
@@ -145,8 +197,14 @@ const cancelEditCard = (button) => {
     form.reset();
 }
 
-const deleteCard = (button) => {
+const deleteCard = async (button) => {
     const index = parseInt(button.getAttribute('data-index'));
+    const persona = personas[index];
+    //https://js-7f027-default-rtdb.firebaseio.com/{id}.json
+    const response = await fetch('https://js-7f027-default-rtdb.firebaseio.com/'+persona.id+'.json', {
+        method: 'DELETE'
+    });
+
     personas.splice(index,1);
     renderCards(personas);
 }
@@ -176,3 +234,7 @@ const validaForm = () =>{
     }
     return true;
 }
+
+
+
+
